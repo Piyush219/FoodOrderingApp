@@ -1,26 +1,22 @@
-import ReactDom from 'react-dom';
-import React from 'react';
-import styles from './CartItemModel.module.css'
+import classes from './CartItem.module.css';
+
 const CartItem = (props) => {
+  // const price = `$${props.price.toFixed(2)}`;
 
-    const onCloseClick = () => {
-        props.onClose(false)
-    }
-
-  return ReactDom.createPortal(
-    
-      <div className={styles.overlay}>
-    <div className={styles.cartItemBody}>
-      <h4>Sushi</h4>
-      <h1>Amount : $24.19</h1>
-      <button className = {styles.cartItemBtn} type="button" onClick={onCloseClick}>
-        Close
-      </button>
-      <button className = {styles.cartItemBtn} type="button">Order</button>
-    </div>
-    </div>,
-
-    document.getElementById('backDrop')
+  return (
+    <li className={classes['cart-item']}>
+      <div>
+        <h2>{props.name}</h2>
+        <div className={classes.summary}>
+          <span className={classes.price}>{props.price}</span>
+          <span className={classes.amount}>x {props.amount}</span>
+        </div>
+      </div>
+      <div className={classes.actions}>
+        <button onClick={props.onRemove}>−</button>
+        <button onClick={props.onAdd}>+</button>
+      </div>
+    </li>
   );
 };
 

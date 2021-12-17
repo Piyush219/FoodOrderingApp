@@ -4,11 +4,11 @@ const RestaurentSummary = () =>{
     return (
         
         <div className= {styles.summaryBody}>
-            <h1>
+            <h2>
                 Delicious Food, Delivered To You
-            </h1>
+            </h2>
 
-            <p>
+            <p className={styles.para}>
                 Choose your favourite meal from our broad selection of available
                 meals and enjoy a delicious lunch or dinner at home.
                 <br />

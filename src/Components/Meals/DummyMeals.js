@@ -1,55 +1,67 @@
 import styles from "./DummyMeals.module.css";
-import Form from "./Form";
-import { useContext } from "react";
-import CartContext from "../../Store/cart-context";
-
+// import { useContext } from "react";
+// import CartContext from "../../Store/cart-context";
+import MealItem from "./MealItem/MealItem";
 
 const dummyMeals = [
   {
     id: "e1",
     title: "Sushi",
     description: "Finest Fish and Viggies",
-    amount: "22.99",
+    price: "22.99",
   },
   {
     id: "e2",
     title: "Schnitzel",
     description: "A German Speciality",
-    amount: "15.50",
+    price: "15.50",
   },
   {
     id: "e3",
     title: "Barbecue Burger",
     description: "American, raw, meaty",
-    amount: "12.99",
+    price: "12.99",
   },
   {
     id: "e4",
     title: "Green Bowl",
     description: "Healthy...and green...",
-    amount: "20.99",
+    price: "20.99",
   },
 ];
 
 const DummyMeals = () => {
-  const cartCtx = useContext(CartContext);
+  // const cartCtx = useContext(CartContext);
 
-  const addToCartHandler = amount => {
-    cartCtx.addItem({
-      id: dummyMeals.id,
-      name: dummyMeals.title,
-      amount: amount,
-      price: dummyMeals.price
-    })
-  }
+  // const addToCartHandler = (amount) => {
+  //   cartCtx.addItem({
+  //     id: dummyMeals.id,
+  //     name: dummyMeals.title,
+  //     amount: amount,
+  //     price: dummyMeals.price,
+  //   });
+  // };
+
+  const mealsList = dummyMeals.map((item) => (
+    <MealItem
+      key={item.id}
+      id={item.id}
+      title={item.title}
+      description={item.description}
+      price={item.price}
+    />
+  ));
+
   return (
     <section className={styles.dummymeal}>
       <ul className={styles.UlistMeals}>
-        {dummyMeals.map((item) => {
+        {mealsList}
+
+        {/* {dummyMeals.map((item) => {
           return (
             <li className={styles.mealsList} key={item.id} id={item.id}>
               <div>
-                <h4 className={styles.title}>{item.title}</h4>
+                <h4 >{item.title}</h4>
                 <p className={styles.description}>{item.description}</p>
                 <h3 className={styles.amount}>${item.amount}</h3>
               </div>
@@ -58,7 +70,7 @@ const DummyMeals = () => {
               </div>
             </li>
           );
-        })}
+        })} */}
       </ul>
     </section>
   );

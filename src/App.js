@@ -1,37 +1,30 @@
-import { Fragment } from "react/cjs/react.production.min";
-import DummyMeals from "./Components/Layout/DummyMeals";
+import { useState } from "react";
+import Cart from "./Components/Cart/Cart";
 import Header from "./Components/Layout/Header";
-import RestaurentSummary from "./Components/Layout/RestaurentSummary";
+import Meals from "./Components/Meals/Meals";
+import CartProvider from "./Store/CartProvider";
+
 
 function App() {
+  const [cartIsShown, setCartIsShown] = useState(false);
 
-  const dummyMeals = [{
-    title: 'Sushi',
-    description: 'Finest Fish and Viggies',
-    amount: '22.99'
-  },
-  {
-    title: 'Schnitzel',
-    description: 'A German Speciality',
-    amount: '15.50'
-  },
-  {
-    title: 'Barbecue Burger',
-    description: 'American, raw, meaty',
-    amount: '12.99'
-  },
-  {
-    title: 'Green Bowl',
-    description: 'Healthy...and green...',
-    amount: '20.99'
-  }]
+  const showCartHandler = () => {
+    setCartIsShown(true);
+  }
+
+  const hideCartHandler = () =>{
+    setCartIsShown(false);
+  }
 
   return (
-    <Fragment>
-      <Header />
-      <RestaurentSummary />
-      <DummyMeals meals = {dummyMeals} />
-    </Fragment>
+    
+    <CartProvider>
+      {cartIsShown && <Cart onClose = {hideCartHandler}/>}
+      <Header onShowCart = {showCartHandler}/>
+      <main>
+        <Meals/>
+      </main>
+    </CartProvider>
   );
 }
 
